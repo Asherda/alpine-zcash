@@ -6,7 +6,7 @@ RUN addgroup -S zcash && adduser -S -G zcash zcash \
   && mkdir -p /zcash/data \
   && chown zcash:zcash /zcash/data
 
-ARG ZCASH_BRANCH=v1.0.0-rc1
+ARG ZCASH_BRANCH=1558.alpine-linux-fixes
 
 VOLUME /zcash/data
 
@@ -19,6 +19,7 @@ RUN set -x \
     chrpath \
     curl \
     file \
+    git \
     libtool \
     linux-headers \
     m4 \
@@ -32,10 +33,8 @@ RUN set -x \
     wget \
     zlib-dev
 
-RUN curl -o zcash.tar.gz https://codeload.github.com/zcash/zcash/tar.gz/"$ZCASH_BRANCH" \
-  && mkdir -p /usr/src/zcash \
-  && tar -xzf zcash.tar.gz -C /usr/src/zcash --strip-components=1 \
-  && rm zcash.tar.gz \
+RUN mkdir -p /usr/src \
+  && git clone -b "$ZCASH_BRANCH" https://github.com/daira/zcash.git /usr/src/zcash \
   && cd /usr/src/zcash \
   && /bin/bash ./zcutil/fetch-params.sh
 
