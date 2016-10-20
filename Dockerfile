@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.4
 
 MAINTAINER James Edwards <james.p.edwards42@gmail.com> (@jamespedwards)
 
@@ -45,7 +45,10 @@ RUN cd /tmp/build/zcash/src \
   && cd /zcash \
   && rm -rf /tmp/build/zcash \
   && apk del .build-deps \
-  && apk --no-cache add boost
+  && apk --no-cache add \
+    boost \
+    boost-program_options \
+    libgomp
 
 WORKDIR /zcash
 

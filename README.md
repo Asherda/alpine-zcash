@@ -13,12 +13,12 @@ docker run -d \
   -v /host/dir:/zcash/data \
   -p 18232:18232/tcp \
     jamespedwards42/alpine-zcash:latest \
-      -addnode betatestnet.z.cash \
+      -addnode=betatestnet.z.cash \
       -daemon \
-      -datadir /zcash/data \
-      -rpcuser PICK_A_USERNAME \
-      -rpcpassword SUPER_COMPLEX_PASSWORD \
-      -testnet
+      -datadir=/zcash/data \
+      -rpcuser=PICK_A_USERNAME \
+      -rpcpassword=SUPER_COMPLEX_PASSWORD \
+      -testnet=1
 ```
 
 ## Docker Compose
@@ -32,7 +32,7 @@ services:
     volumes:
       - /host/dir:/zcash/data
     image: jamespedwards42/alpine-zcash:latest
-    command: ['-addnode', 'betatestnet.z.cash', '-daemon', '-datadir', '/zcash/data', '-rpcuser', 'PICK_A_USERNAME', '-rpcpassword', 'SUPER_COMPLEX_PASSWORD', '-testnet']
+    command: ['-addnode=betatestnet.z.cash', '-daemon', '-datadir=/zcash/data', '-rpcuser=PICK_A_USERNAME', '-rpcpassword=SUPER_COMPLEX_PASSWORD', '-testnet=1']
 ```
 
 ## Docker Build
