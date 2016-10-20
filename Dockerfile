@@ -41,11 +41,15 @@ RUN mkdir -p /tmp/build \
   && /bin/bash ./zcutil/build.sh -j4
 
 RUN cd /tmp/build/zcash/src \
-  && install -c bitcoin-tx zcashd zcash-cli zcash-gtest -t /usr/local/bin/ \
+  && install -s -c bitcoin-tx zcashd zcash-cli zcash-gtest -t /usr/local/bin/ \
   && cd /zcash \
   && rm -rf /tmp/build/zcash \
-  && apk del .build-deps
+  && apk del .build-deps \
+  && apk --no-cache add boost
+
+WORKDIR /zcash
 
 USER zcash
+
 ENTRYPOINT ["/usr/local/bin/zcashd"]
 CMD ["--help"]

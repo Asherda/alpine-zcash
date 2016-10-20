@@ -1,4 +1,4 @@
-# [Alpine Zcash Docker Image](https://hub.docker.com/r/jamespedwards42/alpine-zcash/)
+# [Alpine Zcashd Docker Image](https://hub.docker.com/r/jamespedwards42/alpine-zcash/)
 
 ## Supported Tags
 
