@@ -17,6 +17,7 @@ RUN set -x \
     automake \
     boost-dev \
     build-base \
+    cargo \
     chrpath \
     curl \
     file \
